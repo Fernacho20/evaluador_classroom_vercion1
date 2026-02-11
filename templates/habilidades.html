@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de Habilidades de Estudio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+<div class="card">
+
+<h2>Test de Habilidades de Estudio</h2>
+<p class="subtitulo">
+Marca <strong>Sí</strong> o <strong>No</strong> según lo que haces habitualmente.
+</p>
+
+<form method="post">
+
+{% if alumno %}
+<p><strong>Alumno:</strong> {{ alumno.nombre }}</p>
+<p><strong>Grupo:</strong> {{ alumno.grupo }}</p>
+{% endif %}
+
+<hr>
+
+{% set preguntas = [
+"¿Planificas tu tiempo de estudio antes de comenzar?",
+"¿Estudias en un lugar libre de distracciones?",
+"Tomas apuntes mientras escuchas la clase?",
+"¿Repasas tus apuntes después de clase?",
+"¿Subrayas ideas importantes?",
+"¿Haces resúmenes?",
+"¿Estudias con anticipación?",
+"¿Lees instrucciones con atención?",
+"¿Organizas tu material?",
+"¿Evitas estudiar a última hora?",
+"¿Usas esquemas?",
+"¿Distribuyes tu tiempo?",
+"¿Descansas adecuadamente?",
+"¿Te concentras fácilmente?",
+"¿Buscas información extra?",
+"¿Revisas errores anteriores?",
+"¿Estudias diariamente?",
+"¿Preparas tareas con tiempo?",
+"¿Lees temas difíciles más de una vez?",
+"¿Cumples horarios?"
+] %}
+
+{% for i in range(20) %}
+<div class="pregunta">
+    <p><strong>{{ i+1 }}.</strong> {{ preguntas[i] }}</p>
+    <div class="opciones">
+        <label>
+            <input type="radio" name="r{{ i }}" value="si" required> Sí
+        </label>
+        <label>
+            <input type="radio" name="r{{ i }}" value="no"> No
+        </label>
+    </div>
+</div>
+{% endfor %}
+
+<button class="btn-enviar">Enviar cuestionario</button>
+
+</form>
+</div>
+</div>
+
+</body>
+</html>

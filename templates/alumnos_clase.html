@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Alumnos de {{ clase.nombre }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Clase: {{ clase.nombre }}</h1>
+
+<form method="get">
+    <input type="text" name="alumno" placeholder="Alumno">
+    <input type="text" name="carrera" placeholder="Carrera">
+    <input type="text" name="cuestionario" placeholder="Cuestionario">
+    <input type="text" name="resultado" placeholder="Resultado">
+    <button>Filtrar</button>
+</form>
+<br>
+
+<table>
+    <tr>
+        <th>Alumno</th>
+        <th>Carrera</th>
+        <th>Cuestionario</th>
+        <th>Resultado</th>
+    </tr>
+
+    {% for a in alumnos %}
+    <tr>
+        <td>{{ a.nombre }}</td>
+        <td>{{ a.carrera }}</td>
+        <td>{{ a.cuestionario or "-" }}</td>
+
+        <td>
+            {% if a.resultado %}
+                {{ a.resultado.split(" | ")[0] }}
+
+                {% if a.cuestionario == "Cuestionario de Salud" %}
+                    <br>
+                    <a class="btn-secundario"
+                       href="{{ url_for('salud_detalle', nombre=a.nombre) }}">
+                        Ver detalle
+                    </a>
+                {% endif %}
+            {% else %}
+                -
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<a href="/dashboard">⬅ Volver al panel</a>
+
+</body>
+</html>

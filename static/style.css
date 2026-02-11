@@ -1,0 +1,299 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 20px;
+}
+
+.contenedor {
+    background: #ffffff;
+    max-width: 850px;
+    margin: auto;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #003366;
+}
+
+.instrucciones {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.pregunta {
+    padding: 18px;
+    margin-bottom: 15px;
+    border-left: 5px solid #003366;
+    background: #f9fbfd;
+    border-radius: 6px;
+}
+
+.opciones {
+    margin-top: 10px;
+}
+
+.opciones label {
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+button {
+    display: block;
+    margin: 35px auto 0;
+    padding: 14px 40px;
+    font-size: 16px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0055aa;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #003366;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-menu {
+    text-decoration: none;
+    background: #003366;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn-menu:hover {
+    background: #00509e;
+}
+
+.link-docente {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #003366;
+    font-weight: bold;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla th {
+    background: #003366;
+    color: white;
+    padding: 10px;
+}
+
+.tabla td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.card-login {
+    max-width: 400px;
+    margin: auto;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #003366;
+}
+
+.descripcion {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.subtitulo {
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.checks {
+    margin-top: 10px;
+}
+
+.check-item {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: normal;
+}
+
+.btn-primario {
+    margin-top: 25px;
+    padding: 12px;
+    background: #003366;
+    color: white;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-primario:hover {
+    background: #002244;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla th, .tabla td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.alerta-roja {
+    background:#ffe5e5;
+    color:#900;
+    padding:10px;
+    margin-bottom:10px;
+    border-left:6px solid red;
+}
+
+.btn-peligro {
+    background:#c00;
+    color:white;
+    border:none;
+    padding:6px 10px;
+}
+
+.btn-peligro {
+    background:#c00;
+    color:white;
+    border:none;
+    padding:6px 10px;
+}
+
+.alerta-roja {
+    background:#ffe5e5;
+    border-left:6px solid red;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.input-url {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+        
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+    
+th {
+    background: #f0f0f0;
+}
+
+.alerta-roja {
+    color: #fff;
+    background: #c0392b;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.alerta-amarilla {
+    color: #000;
+    background: #f1c40f;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.alerta-verde {
+    color: #fff;
+    background: #27ae60;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.alerta {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.alerta-roja {
+    background: #e74c3c;
+    color: white;
+}
+
+.alerta-amarilla {
+    background: #f1c40f;
+    color: black;
+}
+

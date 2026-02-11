@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel del profesor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+
+<div class="card">
+<h2>Avance por clase</h2>
+
+<table class="tabla">
+<tr>
+<th>Clase</th>
+<th>Entregados</th>
+<th>Pendientes</th>
+</tr>
+
+{% for e in entregas %}
+<tr>
+<td>{{ e.nombre }}</td>
+<td>{{ e.entregados }}</td>
+<td>{{ e.registrados - e.entregados }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+<div class="card">
+<h2>Alertas de riesgo emocional</h2>
+
+{% for r in autoestima_riesgo %}
+    {% if r.porcentaje_baja >= 30 %}
+        <div class="alerta alerta-roja">
+            {{ r.nombre }} → {{ r.porcentaje_baja }}% con Autoestima Baja
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+<div class="card">
+<h2>Batería de Tamizaje - Alertas</h2>
+
+{% for t in tamizaje %}
+    {% if "Requiere evaluación" in t.resultado %}
+        <div class="alerta alerta-roja">
+            {{ t.nombre }} → Riesgo emocional detectado
+        </div>
+    {% elif "Riesgo" in t.resultado %}
+        <div class="alerta alerta-amarilla">
+            {{ t.nombre }} → Atención preventiva
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+<div class="card">
+<h2>Alertas de salud</h2>
+
+{% for s in salud_riesgo %}
+    {% if s.porcentaje >= 30 %}
+        <div class="alerta alerta-roja">
+            {{ s.nombre }} → {{ s.porcentaje }}% con Riesgo en Salud
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+<div class="card">
+<h2>Crear nueva clase</h2>
+
+<form method="post" class="form-clase">
+<label>Nombre de la clase</label>
+<input type="text" name="nombre" required>
+
+<p class="subtitulo">Cuestionarios habilitados</p>
+
+<label><input type="checkbox" name="cuestionarios" value="Habilidades"> Habilidades</label>
+<label><input type="checkbox" name="cuestionarios" value="Estilos de aprendizaje"> Estilos de aprendizaje</label>
+<label><input type="checkbox" name="cuestionarios" value="Autoestima Rosenberg"> Autoestima</label>
+<label><input type="checkbox" name="cuestionarios" value="Batería de Tamizaje"> Batería de Tamizaje</label>
+<label><input type="checkbox" name="cuestionarios" value="Cuestionario de Salud">Cuestionario de Salud</label>
+
+<button class="btn-primario">Crear clase</button>
+</form>
+</div>
+
+<div class="card">
+<h2>Clases creadas</h2>
+
+<table class="tabla">
+<tr>
+<th>Clase</th>
+<th>Enlace alumnos</th>
+<th>Acciones</th>
+</tr>
+
+{% for c in clases %}
+<tr>
+    <td>{{ c.nombre }}</td>
+
+    <td>
+        <a href="{{ url_for('acceso_clase', codigo=c.codigo, _external=True) }}"
+           target="_blank">
+            {{ url_for('acceso_clase', codigo=c.codigo, _external=True) }}
+        </a>
+    </td>
+
+    <td>
+        <a href="{{ url_for('alumnos_clase', clase_id=c.id) }}">
+            Ver alumnos
+        </a>
+
+        <form method="post"
+              action="/eliminar_clase/{{ c.id }}"
+              onsubmit="return confirm('¿Eliminar esta clase y todos sus datos?');">
+            <button class="btn-peligro"></button>
+        </form>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+<div class="card">
+<h2>Estadísticas por grupo</h2>
+
+<form method="get">
+    <label>Selecciona una clase</label>
+    <select name="clase_id" onchange="this.form.submit()">
+        <option value="">-- Selecciona --</option>
+        {% for c in clases %}
+            <option value="{{ c.id }}"
+                {% if clase_seleccionada == c.id|string %}selected{% endif %}>
+                {{ c.nombre }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+</div>
+
+{% if stats_grupo %}
+<div class="card">
+
+<h2>Resultados del Grupo</h2>
+
+<hr>
+
+<h3>Autoestima</h3>
+<ul>
+{% for a in stats_grupo.autoestima %}
+<li>{{ a.resultado }} → {{ a.total }} alumnos ({{ a.porcentaje }}%)</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<h3>Estilos de Aprendizaje</h3>
+<ul>
+{% for e in stats_grupo.estilos %}
+<li>{{ e.estilo }} → {{ e.total }} alumnos ({{ e.porcentaje }}%)</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<h3>Habilidades</h3>
+<ul>
+{% for h in stats_grupo.habilidades %}
+<li>{{ h.resultado }} → {{ h.total }} alumnos ({{ h.porcentaje }}%)</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<h3>Tamizaje</h3>
+
+{% for area, datos in stats_grupo.tamizaje.items() %}
+<h4>{{ area.replace("Tamizaje - ", "") }}</h4>
+<ul>
+{% for d in datos %}
+<li>{{ d.resultado }} → {{ d.total }} alumnos ({{ d.porcentaje }}%)</li>
+{% endfor %}
+</ul>
+{% endfor %}
+
+<hr>
+
+<h3>Cuestionario de Salud</h3>
+<ul>
+{% for s in stats_grupo.salud %}
+<li>{{ s.resultado }} → {{ s.total }} alumnos ({{ s.porcentaje }}%)</li>
+{% endfor %}
+</ul>
+
+</div>
+{% endif %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Batería de Tamizaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+<div class="card">
+
+<h2>Batería de Tamizaje</h2>
+<p class="instrucciones">
+Contesta según cómo te has sentido recientemente.
+</p>
+
+<form method="post">
+
+<h3>Depresión</h3>
+<p class="escala">0 = Nunca · 1 = Varios días · 2 = Más de la mitad · 3 = Casi todos los días</p>
+
+{% set dep = [
+"Sentirse desanimado, deprimido o sin esperanza",
+"Poco interés o placer en hacer cosas"
+] %}
+
+{% for i in range(2) %}
+<div class="pregunta">
+<p><strong>{{ i+1 }}.</strong> {{ dep[i] }}</p>
+{% for v in range(4) %}
+<label><input type="radio" name="d{{ i+1 }}" value="{{ v }}" required> {{ v }}</label>
+{% endfor %}
+</div>
+{% endfor %}
+
+<hr>
+
+<h3>Ansiedad</h3>
+
+{% set anx = [
+"Sentirse nervioso, ansioso o al límite",
+"No poder dejar de preocuparse"
+] %}
+
+{% for i in range(2) %}
+<div class="pregunta">
+<p><strong>{{ i+1 }}.</strong> {{ anx[i] }}</p>
+{% for v in range(4) %}
+<label><input type="radio" name="a{{ i+1 }}" value="{{ v }}" required> {{ v }}</label>
+{% endfor %}
+</div>
+{% endfor %}
+
+<hr>
+
+<h3>Consumo de Alcohol</h3>
+
+{% set alc = [
+"¿Con qué frecuencia consumes alcohol?",
+"¿Cuántas bebidas consumes normalmente?",
+"¿Con qué frecuencia consumes 6 o más bebidas?"
+] %}
+
+{% for i in range(3) %}
+<div class="pregunta">
+<p><strong>{{ i+1 }}.</strong> {{ alc[i] }}</p>
+{% for v in range(5) %}
+<label><input type="radio" name="al{{ i+1 }}" value="{{ v }}" required> {{ v }}</label>
+{% endfor %}
+</div>
+{% endfor %}
+
+<hr>
+
+<h3>Rasgos Neurodivergentes</h3>
+<p class="escala">0 = Nunca · 1 = A veces · 2 = Frecuentemente · 3 = Siempre</p>
+
+{% set neuro = [
+"Dificultad para mantener atención",
+"Problemas para organizar tareas",
+"Evita contacto visual",
+"Dificultad para comprender bromas",
+"Hipersensibilidad sensorial",
+"Preferencia por rutinas",
+"Dificultad social",
+"Pensamiento literal",
+"Problemas para cambios",
+"Intereses intensos",
+"Impulsividad",
+"Dificultad para esperar turnos",
+"Hiperenfoque",
+"Olvido frecuente",
+"Inquietud física",
+"Problemas de regulación emocional",
+"Dificultad para seguir instrucciones largas"
+] %}
+
+{% for i in range(17) %}
+<div class="pregunta">
+<p><strong>{{ i+1 }}.</strong> {{ neuro[i] }}</p>
+{% for v in range(4) %}
+<label><input type="radio" name="n{{ i+1 }}" value="{{ v }}" required> {{ v }}</label>
+{% endfor %}
+</div>
+{% endfor %}
+
+<br>
+<button type="submit" class="btn-enviar">Enviar</button>
+
+</form>
+</div>
+</div>
+
+</body>
+</html>

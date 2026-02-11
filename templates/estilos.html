@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Estilos de Aprendizaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Test de Estilos de Aprendizaje (PNL)</h2>
+    <p>Marca con una “X” según lo que haces actualmente.</p>
+
+    <p><strong>Escala:</strong><br>
+        1 = Nunca · 2 = Raramente · 3 = Ocasionalmente · 4 = Usualmente · 5 = Siempre
+    </p>
+
+    <form method="post">
+
+        {% if alumno %}
+            <p><strong>Alumno:</strong> {{ alumno.nombre }} ({{ alumno.matricula }})</p>
+            <p><strong>Grupo:</strong> {{ alumno.grupo }}</p>
+            <p><strong>Carrera:</strong> {{ alumno.carrera }}</p>
+        {% endif %}
+
+        <hr>
+
+        {% set preguntas = [
+        "Me ayuda trazar o escribir a mano las palabras cuando tengo que aprenderlas de memoria",
+        "Recuerdo mejor un tema al escuchar una conferencia en vez de leer un libro",
+        "Prefiero las clases que requieren una prueba sobre lo que se lee en el libro",
+        "Me gusta comer algo o mascar chicle cuando estudio",
+        "Puedo recordar ideas principales sin anotarlas",
+        "Prefiero instrucciones escritas sobre las orales",
+        "Resuelvo bien rompecabezas y laberintos",
+        "Prefiero pruebas sobre conferencias",
+        "Me ayudan las diapositivas y videos",
+        "Recuerdo más al leer que al escuchar",
+        "Escribo números para recordarlos",
+        "Prefiero escuchar noticias en radio",
+        "Me gusta tener algo en la mano al estudiar",
+        "Necesito copiar ejemplos de la pizarra",
+        "Prefiero instrucciones orales",
+        "Prefiero libros con diagramas",
+        "Me gusta escuchar música al estudiar",
+        "Apunto listas para recordar",
+        "Corrijo errores revisando visualmente",
+        "Prefiero leer el periódico",
+        "Recuerdo números cuando los oigo",
+        "Disfruto trabajos manuales",
+        "Leo en voz alta lo que escribo",
+        "Recuerdo mejor si me muevo mientras aprendo"
+        ] %}
+
+        {% for p in range(24) %}
+        <div class="pregunta">
+            <p><strong>{{ p+1 }}.</strong> {{ preguntas[p] }}</p>
+
+            {% for i in range(1,6) %}
+                <label>
+                    <input type="radio" name="p{{ p+1 }}" value="{{ i }}" required> {{ i }}
+                </label>
+            {% endfor %}
+        </div>
+        {% endfor %}
+
+        <button type="submit">Enviar cuestionario</button>
+    </form>
+</div>
+
+</body>
+</html>

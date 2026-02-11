@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ clase.nombre }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="card">
+
+        <h2>{{ clase.nombre }}</h2>
+        <p>Completa tus datos para iniciar la evaluación</p>
+
+        <form method="post" action="/registro">
+
+            <input type="hidden" name="clase_id" value="{{ clase.id }}">
+
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required>
+
+            <label>Matrícula</label>
+            <input type="text" name="matricula">
+
+            <label>Grupo</label>
+            <input type="text" name="grupo">
+
+            <label>Carrera</label>
+            <select name="carrera" required>
+                <option value="" disabled selected>Selecciona tu carrera</option>
+                <option>Sistemas Computacionales</option>
+                <option>Industrial</option>
+                <option>Mecatrónica</option>
+                <option>Gestión Empresarial</option>
+            </select>
+
+            <button type="submit">Iniciar evaluación</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

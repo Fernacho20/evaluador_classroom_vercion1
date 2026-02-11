@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cuestionario de Salud</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Cuestionario de Salud</h2>
+
+{% if alumno %}
+<p><strong>Alumno:</strong> {{ alumno.nombre }}</p>
+<p><strong>Grupo:</strong> {{ alumno.grupo }}</p>
+<p><strong>Carrera:</strong> {{ alumno.carrera }}</p>
+{% endif %}
+
+<hr>
+
+<form method="post">
+
+<label>¿Padeces alguna enfermedad?</label>
+<input name="enfermedad">
+
+<label>¿Tienes tratamiento? ¿Cuál?</label>
+<input name="tratamiento">
+
+<label>¿Tienes otro padecimiento?</label>
+<input name="otro_padecimiento">
+
+<label>¿Alergia a medicamentos? Especifica</label>
+<input name="alergia_medicamento">
+
+<label>¿Alergia a alimentos u otras cosas?</label>
+<input name="alergia_otras">
+
+<label>¿Tomas medicamentos frecuentemente?</label>
+<input name="medicamentos">
+
+<label>¿Practicas algún deporte?</label>
+<input name="deporte">
+
+<label>¿Consumes suplementos?</label>
+<input name="suplementos">
+
+<label>¿Te han realizado cirugía?</label>
+<input name="cirugia">
+
+<label>¿Has tenido fractura?</label>
+<input name="fractura">
+
+<label>¿Autorizas medicamento en institución?</label>
+<select name="autoriza">
+  <option value="Si">Sí</option>
+  <option value="No">No</option>
+</select>
+
+<label>Teléfono personal</label>
+<input name="tel_personal">
+
+<label>Teléfono de casa</label>
+<input name="tel_casa">
+
+<label>Contacto de emergencia</label>
+<input name="contacto_emergencia">
+
+<button class="btn-primario">Enviar</button>
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Escala de Autoestima de Rosenberg</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="card">
+
+        <h2>Escala de Autoestima de Rosenberg</h2>
+
+        <p class="instrucciones">
+            Indica tu grado de acuerdo con cada afirmación.
+        </p>
+
+        <p class="escala">
+            <strong>Escala:</strong><br>
+            4 = Muy de acuerdo · 3 = De acuerdo · 2 = En desacuerdo · 1 = Muy en desacuerdo
+        </p>
+
+        <form method="post">
+
+            {% if alumno %}
+                <p><strong>Alumno:</strong> {{ alumno.nombre }} ({{ alumno.matricula }})</p>
+                <p><strong>Grupo:</strong> {{ alumno.grupo }}</p>
+                <p><strong>Carrera:</strong> {{ alumno.carrera }}</p>
+            {% endif %}
+
+            {% set preguntas = [
+            "Siento que soy una persona digna de aprecio, al menos tanto como los demás",
+            "Creo que tengo cualidades positivas",
+            "En general, me inclino a pensar que soy un fracaso",
+            "Soy capaz de hacer las cosas tan bien como la mayoría de la gente",
+            "Siento que no tengo mucho de lo que estar orgulloso",
+            "Tengo una actitud positiva hacia mí mismo",
+            "En general, estoy satisfecho conmigo mismo",
+            "Desearía valorarme más a mí mismo",
+            "A veces me siento inútil",
+            "A veces pienso que no soy bueno para nada"
+            ] %}
+
+            {% set invertidas = [3,5,6,8,9] %}
+
+            {% for i in range(10) %}
+            <div class="pregunta">
+                <p><strong>{{ i+1 }}.</strong> {{ preguntas[i] }}</p>
+
+                <div class="opciones-vertical">
+
+                    {% if (i+1) in invertidas %}
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="1" required>
+                            Muy de acuerdo
+                        </label>
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="2">
+                            De acuerdo
+                        </label>
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="3">
+                            En desacuerdo
+                        </label>
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="4">
+                            Muy en desacuerdo
+                        </label>
+                    {% else %}
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="4" required>
+                            Muy de desacuerdo
+                        </label>
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="3">
+                            De desacuerdo
+                        </label>
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="2">
+                            En acuerdo
+                        </label>
+                        <label>
+                            <input type="radio" name="p{{ i+1 }}" value="1">
+                            Muy en acuerdo
+                        </label>
+                    {% endif %}
+
+                </div>
+            </div>
+        {% endfor %}
+
+            <button type="submit" class="btn-enviar">
+                Enviar cuestionario
+            </button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

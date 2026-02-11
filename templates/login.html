@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Docente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+    <h2>Panel de Orientación Escolar</h2>
+
+    <form method="post">
+        <label>Usuario</label>
+        <input type="text" name="u" required>
+
+        <label>Contraseña</label>
+        <input type="password" name="p" required>
+
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+
+</body>
+</html>

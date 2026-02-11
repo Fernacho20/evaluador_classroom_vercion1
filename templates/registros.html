@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro y Cuestionarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="card">
+
+        <h2>Registro del Estudiante</h2>
+        <p>Completa tus datos y selecciona el cuestionario para iniciar.</p>
+
+        <form method="post">
+
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" required>
+
+            <label>Matrícula</label>
+            <input type="text" name="matricula" required>
+
+            <label>Carrera</label>
+            <select name="carrera" required>
+                <option value="">Selecciona una carrera</option>
+                <option>Sistemas Computacionales</option>
+                <option>Gestión Empresarial</option>
+                <option>Industrial</option>
+                <option>Mecatrónica</option>
+            </select>
+
+            <label>Semestre</label>
+            <input type="text" name="semestre" required>
+
+            <label>Grupo</label>
+            <input type="text" name="grupo" required>
+
+            <hr>
+
+            <h3>Selecciona el cuestionario</h3>
+
+            <div class="opciones-cuestionario">
+                <select name="cuestionario" required>
+                    <option value="habilidades">Habilidades de estudio</option>
+                    <option value="estilos">Estilos de aprendizaje</option>
+                    <option value="autoestima">Autoestima</option>
+                </select>
+            </div>
+
+            <button type="submit">Iniciar evaluación</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

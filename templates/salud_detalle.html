@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Detalle Salud</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<div class="contenedor">
+<div class="card">
+
+<h2>Detalle Cuestionario de Salud</h2>
+<h3>{{ alumno }}</h3>
+
+<p><strong>Nivel:</strong> {{ nivel }}</p>
+
+<table class="tabla">
+<tr>
+<th>Pregunta</th>
+<th>Respuesta</th>
+</tr>
+
+{% for p,r in respuestas.items() %}
+<tr>
+<td>{{ p }}</td>
+<td>{{ r }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+<a href="/historial_salud" class="btn-primario">Volver</a>
+
+</div>
+</div>
+</body>
+</html>
